@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+:root {
+    --body-font: "Inter", sans-serif;
+    --main-font-size: 1rem;
+    --text-color: #0A0A0A;
+    --white: #ffffff;
+    --black: #000000;
+    --body-bg-color: #eef2ff;
+    --primary: #171717;
+    --primary-dark: #1e3a8a;
+    --secondary-color: #FAFAF9;
+    --card-bg-color: #bedbff;
+    --input-bg: #fafafa;
+    --input-border: #d1d5db;
+    --focus-glow: rgba(30, 58, 138, 0.1);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: var(--body-font);
+    font-weight: 400;
+    font-size: var(--main-font-size);
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--body-bg-color);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+button {
+    cursor: pointer;
+    padding: .55rem 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--primary);
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+header p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.card {
+    cursor: pointer;
+    background-color: var(--card-bg-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px var(--shadow-dark);
+}
+
+.pokemon-img {
+    width: 100%;
+    height: auto;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.cards-setter {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.cards-setter label {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.cards-setter input {
+    padding: .5rem;
+    width: 6rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.cards-setter input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px var(--focus-glow);
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.score h2 {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    .cards {
+        gap: 1rem;
+    }
+
+    .card {
+        width: 140px;
+        height: 200px;
+    }
+
+    .pokemon-img {
+        width: 80%;
+        height: 80%;
+    }
+
+    .score {
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.25rem;
+    }
+
+    .cards-setter {
+        flex-direction: column;
+    }
+
+    .cards-setter input {
+        width: 100%;
+        max-width: 8rem;
+        font-size: 1.1rem;
+    }
+
+    .cards-setter button {
+        width: 100%;
+        max-width: 8rem;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+}
