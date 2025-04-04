@@ -6,4 +6,4 @@ This is a required project - Memory Card - for [The Odin Project](https://www.th
 - React
 
 ## Demo
-Check out the [live demo](https://sjdumas.github.io/memory-card).
+Check out the [live demo](https://memory-card-indol-xi.vercel.app).
