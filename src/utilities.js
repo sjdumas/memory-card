@@ -2,7 +2,10 @@ const getPokemonImage = async (id) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await response.json();
     
-    return data.sprites.other["official-artwork"].front_default;
+    return {
+        name: data.name,
+        image: data.sprites.other["official-artwork"].front_default
+    };
 };
 
 export const getMultiplePokemonImages = async (count) => {
@@ -14,7 +17,7 @@ export const getMultiplePokemonImages = async (count) => {
         promises.push(getPokemonImage(randomID));
     }
 
-    const images = await Promise.all(promises);
+    const pokemonData = await Promise.all(promises);
 
-    return images;
+    return pokemonData;
 };

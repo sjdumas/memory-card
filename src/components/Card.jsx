@@ -1,7 +1,10 @@
-function Card({ id, src, onClick }) {
+function Card({ id, src, name, onClick }) {
 	return (
 		<div className="card" onClick={() => onClick(id)}>
-			<img src={src} alt="Pokemon" className="pokemon-image" />
+			<div className="card-content">
+				<img src={src} alt={name} className="pokemon-image" />
+				<p className="pokemon-name">{name}</p>
+			</div>
 		</div>
 	);
 };

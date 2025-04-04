@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Score from "./components/Score";
 import Card from "./components/Card";
-import CardsNoSetter from "./components/CardsNoSetter";
 import { getMultiplePokemonImages } from "./utilities";
 import "./style.css";
 
@@ -10,30 +9,30 @@ function App() {
 	document.title = "Memory Card Game";
 
 	const [cards, setCards] = useState([]);
-	const [cardsNo, setCardsNo] = useState(8);
+	const [cardsNumber, setCardsNumber] = useState(8);
 	const [highscore, setHighscore] = useState(0);
 	const [shuffledCards, setShuffledCards] = useState([]);
 
 	useEffect(() => {
 		let ignore = false;
 
-		getMultiplePokemonImages(cardsNo).then((data) => {
+		getMultiplePokemonImages(cardsNumber).then((data) => {
 			if (!ignore) {
-				const generateCards = data.map((src) => ({
-					src,
+				const generatedCards = data.map((pokemon) => ({
 					id: crypto.randomUUID(),
+					name: pokemon.name,
+					src: pokemon.image,
 					isClicked: false,
-				}));
+				}));				
 
-				setCards(generateCards);
-				setShuffledCards(shuffleArray(generateCards));
+				setCards(generatedCards);
+				setShuffledCards(shuffleArray(generatedCards));
 			}
 		});
-
 		return () => {
 			ignore = true;
 		};
-	}, [cardsNo]);
+	}, [cardsNumber]);
 
 	const findCardById = (id) => {
 		return cards.find((card) => card.id === id);
@@ -43,7 +42,6 @@ function App() {
 		const cardsReseted = cards.map((card) => {
 			return { ...card, isClicked: false };
 		});
-
 		setCards(cardsReseted);
 	};
 
@@ -55,12 +53,12 @@ function App() {
 
 			[copy[i], copy[j]] = [copy[j], copy[i]];
 		}
-
 		return copy;
 	};
 
 	const handleCardClick = (id) => {
 		const card = findCardById(id);
+		
 		if (card.isClicked) {
 			resetAllCards();
 		} else {
@@ -72,21 +70,9 @@ function App() {
 			setShuffledCards(shuffleArray(newCards));
 
 			const newScore = newCards.filter((c) => c.isClicked).length;
+			
 			setHighscore((prevHighscore) => Math.max(prevHighscore, newScore));
 		}
-	};
-
-	const randomizedCards = () => {
-		const colonedCards = [...cards];
-		for (let i = colonedCards.length - 1; i > 0; i--) {
-			let j = Math.floor(Math.random() * (i + 1));
-			[colonedCards[i], colonedCards[j]] = [colonedCards[j], colonedCards[i]];
-		}
-		return colonedCards;
-	};
-
-	const handleCardsNoChange = (newNumber) => {
-		setCardsNo(newNumber);
 	};
 
 	const score = cards.filter((card) => card.isClicked).length;
@@ -95,7 +81,6 @@ function App() {
 		<>
 			<div className="container">
 				<Header />
-				<CardsNoSetter onSubmit={handleCardsNoChange} cardsNo={cardsNo} />
 				<Score score={score} highScore={highscore} />
 				<div className="cards">
 					{shuffledCards.map((card) => (
@@ -103,6 +88,7 @@ function App() {
 						key={card.id}
 						id={card.id}
 						src={card.src}
+						name={card.name}
 						onClick={handleCardClick}
 					/>
 					))}
