@@ -1,8 +1,9 @@
 function Header() {
     return (
         <header>
-            <h1>Memory Card Game</h1>
-            <p>Earn points by clicking on an image but don't click on any more than once!</p>
+            <h1>Memory</h1>
+            <h2>Are you ready to test your memory?</h2>
+            <p>Earn points by clicking on an image once and only once.</p>
         </header>
     );
 }

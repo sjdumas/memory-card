@@ -1,14 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Mogra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mogra&display=swap');
 
 :root {
     --body-font: "Inter", sans-serif;
     --heading-font: "Mogra", system-ui;
+    --heading-font-alt: "Bungee Shade", system-ui;
     --main-font-size: 1rem;
     --text-color: #404040;
     --white: #ffffff;
-    --body-bg-color: #eff6ff;
+    --body-bg-color: #fafaf9;
     --primary: #0a0a0a;
+    --secondary: #f54900;
     --card-bg-color: #fbd743;
     --focus-glow: rgba(30, 58, 138, 0.1);
     --shadow-light: rgba(0, 0, 0, 0.1);
@@ -46,10 +47,18 @@ header {
 }
 
 header h1 {
-    font-family: var(--heading-font);
-    font-size: 3.75rem;
+    font-family: var(--heading-font-alt);
+    font-size: 4rem;
     color: var(--primary);
+    text-shadow: var(--secondary) 1px 1px 3px;
     font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+header h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    font-weight: 500;
     margin-bottom: 1rem;
 }
 
@@ -94,7 +103,6 @@ header p {
     align-items: center;
     padding: 1rem;
 }
-
 
 .card:hover {
     transform: scale(1.08);
@@ -145,6 +153,10 @@ header p {
 @media (max-width: 768px) {
     header h1 {
         font-size: 2.2rem;
+    }
+
+    header h2 {
+        font-size: 1.5rem;
     }
 
     header p {
